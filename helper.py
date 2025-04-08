@@ -21,6 +21,7 @@ project_id = os.environ['project_id']
 dataset_id = os.environ['dataset_id']
 table_id = os.environ['table_id']
 
+
 # get data from googlesheet
 
 # prepare parameters for API call function
