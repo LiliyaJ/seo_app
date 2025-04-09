@@ -44,4 +44,4 @@ def fetch_historical_search_volume(keyword_location_language_list, client):
 
 # transform data
 
-# send data back to googlesheet
+# send data back to googlesheet or bigquery

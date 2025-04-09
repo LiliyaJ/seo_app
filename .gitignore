@@ -3,3 +3,4 @@
 *.json
 /data/
 __pycache__
+result_json.txt
