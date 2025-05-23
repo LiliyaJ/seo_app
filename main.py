@@ -30,3 +30,7 @@ client = RestClient(DFS_LOGIN, DFS_KEY)
 gs_data = get_data_from_gs (spreadsheet_id, build('sheets', 'v4', credentials=credentials))
 
 print(gs_data)
+
+make_api_call = fetch_historical_search_volume(gs_data, client)
+
+print (make_api_call)
