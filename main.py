@@ -6,6 +6,7 @@ from google.oauth2 import service_account
 import pandas as pd
 from googleapiclient.discovery import build
 from google.cloud import bigquery
+from flask import make_response
 from helper import get_data_from_gs, fetch_historical_search_volume, extract_search_volume_rows, upload_rows_to_sheet, upload_search_volume_bigquery
 
 
@@ -39,18 +40,22 @@ client = RestClient(DFS_LOGIN, DFS_KEY)
 bq_client = bigquery.Client(credentials=credentials, project=project_id)
 service = build('sheets', 'v4', credentials=credentials)
 
-gs_data = get_data_from_gs (spreadsheet_id, build('sheets', 'v4', credentials=credentials))
+def main(request):
 
-print(gs_data)
+    gs_data = get_data_from_gs (spreadsheet_id, build('sheets', 'v4', credentials=credentials))
 
-make_api_call = fetch_historical_search_volume(gs_data, client)
+    print(gs_data)
 
-print (make_api_call)
+    make_api_call = fetch_historical_search_volume(gs_data, client)
 
-api_response = extract_search_volume_rows(make_api_call)
+    print (make_api_call)
 
-print(api_response)
+    api_response = extract_search_volume_rows(make_api_call)
 
-upload_rows_to_sheet(service, spreadsheet_id, 'output!A1', api_response)
+    print(api_response)
 
-upload_search_volume_bigquery(api_response, bq_client, dataset_id, table_id)
+    upload_rows_to_sheet(service, spreadsheet_id, 'output!A1', api_response)
+
+    upload_search_volume_bigquery(api_response, bq_client, dataset_id, table_id)
+
+    return make_response(json.dumps({'result': 'Successfully uploaded the data'}))
