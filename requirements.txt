@@ -1,5 +1,5 @@
 pandas
-googleapiclient.discovery
+google-api-python-client
 google.oauth2
 google.cloud
 
