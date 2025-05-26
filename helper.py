@@ -4,7 +4,7 @@ import pandas as pd
 
 # # get data from googlesheet
 def get_data_from_gs (spreadsheet_id, service):
-    values = service.spreadsheets().values().get(spreadsheetId=spreadsheet_id, range='A1:Z10000').execute()['values']
+    values = service.spreadsheets().values().get(spreadsheetId=spreadsheet_id, range='input!A1:Z10000').execute()['values']
     return [
         (row[0].strip(), row[1].strip(), row[2].strip())
         for row in values[1:]  # Skip header
@@ -111,4 +111,25 @@ def upload_rows_to_sheet(service, spreadsheet_id, range_name, rows):
     ).execute()
 
 
-# send data to bigquery
+# insert data to bigquery
+def upload_search_volume_bigquery(rows, bq_client, dataset_id, table_id):
+    """
+    Appends search volume rows to an existing BigQuery table.
+    Assumes schema: keyword, location, language, year, month, search_volume
+    """
+    table_ref = bq_client.dataset(dataset_id).table(table_id)
+
+    # Corrected field names to match BQ schema
+    correct_headers = ["keyword", "location", "language", "year", "month", "search_volume"]
+    data_rows = rows[1:]  # skip header row
+
+    # Map each row to the correct field names
+    json_rows = [dict(zip(correct_headers, row)) for row in data_rows]
+
+    # Upload
+    errors = bq_client.insert_rows_json(table_ref, json_rows)
+
+    if errors:
+        print("Insert errors:", errors)
+    else:
+        print(f"Successfully inserted {len(json_rows)} rows into {dataset_id}.{table_id}")
