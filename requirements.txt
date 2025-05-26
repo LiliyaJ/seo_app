@@ -1,0 +1,7 @@
+pandas
+googleapiclient.discovery
+google.oauth2
+google.cloud
+
+flask
+os
