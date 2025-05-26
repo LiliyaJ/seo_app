@@ -4,6 +4,7 @@ import os
 from data.client import RestClient
 from google.oauth2 import service_account
 import pandas as pd
+import google.auth
 from googleapiclient.discovery import build
 from google.cloud import bigquery
 from flask import make_response
@@ -12,21 +13,21 @@ from helper import get_data_from_gs, fetch_historical_search_volume, extract_sea
 
 ### for local debugging
 #Authentication with service account for bigquery
-credentials = service_account.Credentials.from_service_account_file(
-     'bq_service_account.json', scopes=[
-         "https://www.googleapis.com/auth/drive",
-         "https://www.googleapis.com/auth/cloud-platform"],
- )
+# credentials = service_account.Credentials.from_service_account_file(
+#      'bq_service_account.json', scopes=[
+#          "https://www.googleapis.com/auth/drive",
+#          "https://www.googleapis.com/auth/cloud-platform"],
+#  )
 
-###
-### for cloud functions or cloud run deployment
-#Authentication with service account for bigquery
-# scopes=[
-#             "https://www.googleapis.com/auth/drive.readonly",
-#             "https://www.googleapis.com/auth/spreadsheets",
-#             "https://www.googleapis.com/auth/cloud-platform"]
-# credentials, _ = google.auth.default(scopes = scopes)
-###
+##
+## for cloud functions or cloud run deployment
+##Authentication with service account for bigquery
+scopes=[
+            "https://www.googleapis.com/auth/drive.readonly",
+            "https://www.googleapis.com/auth/spreadsheets",
+            "https://www.googleapis.com/auth/cloud-platform"]
+credentials, _ = google.auth.default(scopes = scopes)
+##
 
 spreadsheet_id = os.environ['spreadsheet_id']
 project_id = os.environ['project_id']
