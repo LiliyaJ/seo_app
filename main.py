@@ -25,6 +25,10 @@ try:
     ]
     credentials, _ = google.auth.default(scopes=scopes)
 
+    credentials, project = google.auth.default(scopes=scopes)
+    print("📣 Cloud Run identity:", credentials.service_account_email)
+
+
     spreadsheet_id = os.environ["spreadsheet_id"]
     project_id = os.environ["project_id"]
     dataset_id = os.environ["dataset_id"]
