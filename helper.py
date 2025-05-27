@@ -1,6 +1,3 @@
-import pandas as pd
-
-
 
 # # get data from googlesheet
 def get_data_from_gs (spreadsheet_id, service):

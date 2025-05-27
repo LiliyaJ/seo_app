@@ -83,20 +83,20 @@ try:
     spreadsheet_id = os.environ["spreadsheet_id"]
     print("✅ spreadsheet_id:", spreadsheet_id)
 
-    project_id = os.environ["project_id"]
-    print("✅ project_id:", project_id)
+    # project_id = os.environ["project_id"]
+    # print("✅ project_id:", project_id)
 
-    dataset_id = os.environ["dataset_id"]
-    print("✅ dataset_id:", dataset_id)
+    # dataset_id = os.environ["dataset_id"]
+    # print("✅ dataset_id:", dataset_id)
 
-    table_id = os.environ["table_id"]
-    print("✅ table_id:", table_id)
+    # table_id = os.environ["table_id"]
+    # print("✅ table_id:", table_id)
 
-    DFS_LOGIN = os.environ["DFS_LOGIN"]
-    print("✅ DFS_LOGIN:", DFS_LOGIN)
+    # DFS_LOGIN = os.environ["DFS_LOGIN"]
+    # print("✅ DFS_LOGIN:", DFS_LOGIN)
 
-    DFS_KEY = os.environ["DFS_KEY"]
-    print("✅ DFS_KEY:", DFS_KEY)
+    # DFS_KEY = os.environ["DFS_KEY"]
+    # print("✅ DFS_KEY:", DFS_KEY)
 
     # Initialise clients
     client = RestClient(DFS_LOGIN, DFS_KEY)
