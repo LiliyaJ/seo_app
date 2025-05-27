@@ -16,7 +16,7 @@ from helper import (
 
 app = Flask(__name__)
 
-# 💡 Wrap setup in try block so it doesn't crash container
+
 try:
     scopes = [
         "https://www.googleapis.com/auth/drive",
@@ -24,10 +24,6 @@ try:
         "https://www.googleapis.com/auth/cloud-platform"
     ]
     credentials, _ = google.auth.default(scopes=scopes)
-
-    credentials, project = google.auth.default(scopes=scopes)
-    print("📣 Cloud Run identity:", credentials.service_account_email)
-
 
     spreadsheet_id = os.environ["spreadsheet_id"]
     project_id = os.environ["project_id"]
@@ -41,7 +37,7 @@ try:
     service = build("sheets", "v4", credentials=credentials)
 
 except Exception as e:
-    print("❌ Startup error:", e)
+    print("Startup error:", e)
     traceback.print_exc()
 
 @app.route("/", methods=["POST"])
@@ -56,7 +52,7 @@ def handle_request():
         return make_response(json.dumps({"result": "Successfully uploaded the data"}), 200)
 
     except Exception as e:
-        print("❌ Error in request:", e)
+        print("Error in request:", e)
         traceback.print_exc()
         return make_response(json.dumps({"error": str(e)}), 500)
 
