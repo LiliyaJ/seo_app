@@ -1,6 +1,6 @@
 .env
 .venv
 *.json
-/data/
+/data_ignore/
 __pycache__
 result_json.txt
