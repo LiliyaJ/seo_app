@@ -66,8 +66,9 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def hello():
-    return "✅ Flask is running in Cloud Run", 200
+    return "✅ Hello from Cloud Run"
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
     app.run(host="0.0.0.0", port=port)
+
