@@ -1,6 +1,6 @@
 pandas
 google-api-python-client
-google.oauth2
+google-auth
 google.cloud
 
 flask
