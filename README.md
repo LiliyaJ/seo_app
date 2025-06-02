@@ -25,4 +25,4 @@ This app demonstrates how to build a cloud-based data pipeline using Google tool
 
 The diagram below shows how the components of the SEO app interact:
 
-![Architecture Diagram](image/seo_app_diagram.jpg)
+![Architecture Diagram](images/seo_app_diagram.jpg)
