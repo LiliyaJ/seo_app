@@ -34,3 +34,4 @@ The diagram below shows how the components of the SEO app interact:
 3. Click the **"Send API request"** button in the sheet.
 4. Wait a few moments while the data is processed.
 5. Go to the **Output** tab to view the results.
+6. Check BigQuery table.
