@@ -10,3 +10,13 @@ This project was created to demonstrate the possibilities of cloud computing in 
 - **Apps Script** – to connect Sheets with APIs and backend logic
 - **Python** – for data processing and integration
 - **External APIs** – for fetching SEO-related data
+
+## 1. Features
+
+This app demonstrates how to build a cloud-based data pipeline using Google tools and Python. It:
+
+- Pulls SEO data from the DataForSEO API
+- Transforms the JSON response into a list
+- Stores the data in BigQuery and sends it back to the **Output** tab in Google Sheets
+- Allows users to interact with the app via Google Sheets
+- Automatically updates data using Cloud Run and Apps Script
